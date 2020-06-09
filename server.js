@@ -49,7 +49,7 @@ app.get(
       if (index > 26) {
         index = 26;
       }
-      return index;
+      return alphabet.index;
     });
 
     message = message.join("");
@@ -75,7 +75,7 @@ app.get(
       if (index < 0) {
         index = 0;
       }
-      return index;
+      return alphabet.index;
     });
 
     message = message.join("");
