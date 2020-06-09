@@ -32,7 +32,8 @@ let alphabet = [
 
 app.get("/api/encrypt/:encrypted/:key", async (req, res) => {
   let message = req.params.encrypted;
-  let key = req.params.encrypted;
+  let key = JSON.parse(req.params.key);
+
   message = message.toLowerCase().split("");
 
   message.map((letter) => {
@@ -47,6 +48,7 @@ app.get("/api/encrypt/:encrypted/:key", async (req, res) => {
     if (index > 26) {
       index = 26;
     }
+    console.log(alphabet.index);
     return alphabet.index;
   });
 
@@ -56,7 +58,7 @@ app.get("/api/encrypt/:encrypted/:key", async (req, res) => {
 
 app.get("/api/decrypt/:decrypted/:key", async (req, res) => {
   let message = req.params.decrypted;
-  let key = req.params.encrypted;
+  let key = JSON.parse(req.params.key);
   message = message.toLowerCase().split("");
 
   message.map((letter) => {
@@ -70,6 +72,7 @@ app.get("/api/decrypt/:decrypted/:key", async (req, res) => {
     if (index < 0) {
       index = 0;
     }
+    console.log(alphabet.index);
     return alphabet.index;
   });
 
