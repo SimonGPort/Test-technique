@@ -30,59 +30,53 @@ let alphabet = [
   "z",
 ];
 
-app.get(
-  "/http://localhost:8000/api/encrypt/:encrypted/:key",
-  async (req, res) => {
-    let message = req.params.encrypted;
-    let key = req.params.encrypted;
-    message = message.toLowerCase().split("");
+app.get("/api/encrypt/:encrypted/:key", async (req, res) => {
+  let message = req.params.encrypted;
+  let key = req.params.encrypted;
+  message = message.toLowerCase().split("");
 
-    message.map((letter) => {
-      if (letter === " ") {
-        return " ";
-      }
+  message.map((letter) => {
+    if (letter === " ") {
+      return " ";
+    }
 
-      let index = alphabet.findIndex((alphabetLetter) => {
-        return alphabetLetter === letter;
-      });
-      index = index + key;
-      if (index > 26) {
-        index = 26;
-      }
-      return alphabet.index;
+    let index = alphabet.findIndex((alphabetLetter) => {
+      return alphabetLetter === letter;
     });
+    index = index + key;
+    if (index > 26) {
+      index = 26;
+    }
+    return alphabet.index;
+  });
 
-    message = message.join("");
-    return res.send(JSON.stringify({ return: message }));
-  }
-);
+  message = message.join("");
+  return res.send(JSON.stringify({ return: message }));
+});
 
-app.get(
-  "/http://localhost:8000/api/decrypt/:decrypted/:key",
-  async (req, res) => {
-    let message = req.params.decrypted;
-    let key = req.params.encrypted;
-    message = message.toLowerCase().split("");
+app.get("/api/decrypt/:decrypted/:key", async (req, res) => {
+  let message = req.params.decrypted;
+  let key = req.params.encrypted;
+  message = message.toLowerCase().split("");
 
-    message.map((letter) => {
-      if (letter === " ") {
-        return " ";
-      }
-      let index = alphabet.findIndex((alphabetLetter) => {
-        return alphabetLetter === letter;
-      });
-      index = index - key;
-      if (index < 0) {
-        index = 0;
-      }
-      return alphabet.index;
+  message.map((letter) => {
+    if (letter === " ") {
+      return " ";
+    }
+    let index = alphabet.findIndex((alphabetLetter) => {
+      return alphabetLetter === letter;
     });
+    index = index - key;
+    if (index < 0) {
+      index = 0;
+    }
+    return alphabet.index;
+  });
 
-    message = message.join("");
+  message = message.join("");
 
-    return res.send(JSON.stringify({ return: message }));
-  }
-);
+  return res.send(JSON.stringify({ return: message }));
+});
 
 console.log("hello");
 
